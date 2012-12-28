@@ -1,0 +1,110 @@
+<!--
+First name, Last name, phone number. 100 records pre-filled.
+Phone number can contain "+" sign and digits.
+Write an web application using RequireJS and Bootstrap which can:
+	1) search phone number by last name or first name
+	2) search last name, first name by phone number (exact match).
+Ajax-hint is preferrable to have in the input lines (search while you are typing).
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/app.css">
+		<title>find at yellow pages</title>
+		<script type="text/javascript" data-main="js/app" src="js/require-jquery.js"></script>
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top navbar-inverse">
+			<div class="navbar-inner">
+				<a class="brand" href="#">yellow pages</a>
+				<ul class="nav pull-right">
+					<li><a href="#new_record" class="monitor"><i class="icon-plus icon-white"></i> new record</a></li>
+					<li><a href="#about" class="monitor"><i class="icon-info-sign icon-white"></i> about</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div id="content">
+				<div id="page-header">
+					<h1>find at yellow pages <small>if it's not here, it doesn't exists</small></h1>
+				</div>
+				<form enctype="application/x-www-form-urlencoded">
+					<fieldset>
+						<legend>Search by first name, last name or phone number</legend>
+						<div style="text-align: center">
+							<div class="input-append">
+								<input type="text" class="input-xxlarge" placeholder="Type something..." id="search" name="search">
+								<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i></button>
+								<button type="reset" class="btn" id="display_clear"><i class="icon-remove"></i></button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<div id="err_alert" class="alert alert-error hide">
+					<a href="#close_alert" class="close monitor">&times;</a>
+					<strong>Error!</strong> <span id="errmsg"></span>
+				</div>
+				<div id="display"></div>
+			</div>
+			<footer>
+				<p class="muted">find at yellow pages, a foo company.</p>
+			</footer>
+		</div>
+		<div id="about" tabindex="-1" class="modal hide fade">
+			<div class="modal-header">
+				<h3>about this website</h3>
+			</div>
+			<div class="modal-body">
+				<p>This yellow tool was built using:</p>
+				<ul>
+					<li>jQuery</li>
+					<li>Bootstrap</li>
+					<li>RequireJS</li>
+					<li>PHP</li>
+					<li>SQLite</li>
+					<li>HTML/CSS/JavaScript</li>
+				</ul>
+				<p style="text-align: right"><em>built by Flavio Heleno</em></p>
+			</div>
+			<div class="modal-footer">
+				<a href="#close_about" class="btn btn-primary monitor">Oki doki!</a>
+			</div>
+		</div>
+		<div id="new" tabindex="-1" class="modal hide fade">
+			<div class="modal-header">
+				<h3>add a new record</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" enctype="application/x-www-form-urlencoded" id="addform">
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="firstname">First name</label>
+							<div class="controls">
+								<input type="text" placeholder="Type the first name here" id="firstname" name="firstname" required="required" autofocus="autofocus">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="lastname">Last name</label>
+							<div class="controls">
+								<input type="text" placeholder="Type the last name here" id="lastname" name="lastname" required="required">
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="phonenumber">Phone number</label>
+							<div class="controls">
+								<input type="number" placeholder="Type the phone number here" id="phonenumber" name="phonenumber" required="required">
+								<span class="help-block">Phone number can contain only digits, leading 00 will be replaced by "+" sign</span>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#close_new" class="btn pull-left monitor">Cancel</a>
+				<a href="#add_record" class="btn btn-primary monitor">Add record</a>
+			</div>
+		</div>
+	</body>
+</html>
