@@ -7,7 +7,7 @@
 $query = trim($_SERVER['QUERY_STRING']);
 //user input cleanup
 $query = filter_var($query, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
-if ($query == '')
+if (empty($query))
 	$response = array(
 		'status' => false,
 		'list' => array()
