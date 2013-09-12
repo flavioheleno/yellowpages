@@ -4,20 +4,20 @@
 	This script is responsible for add a new record to the database
 */
 
-if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') { //request method MUST be a post
+if (strtolower($_SERVER['REQUEST_METHOD']) === 'post') { //request method MUST be a post
 	//user input cleanup
 	$firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 	$lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 	$phonenumber = filter_var($_POST['phonenumber'], FILTER_SANITIZE_NUMBER_INT);
 	//check if all the fields were filled
-	if (($firstname == '') || ($lastname == '') || ($phonenumber == ''))
+	if ((empty($firstname)) || (empty($lastname)) || (empty($phonenumber)))
 		$response = array(
 			'status' => false,
 			'msg' => 'Hey, what you think about filling all the fields? Can you try that for me?'
 		);
 	else {
 		//handles international numbers (leading 00 => +)
-		if (substr($phonenumber, 0, 2) == '00')
+		if (substr($phonenumber, 0, 2) === '00')
 			$phonenumber = '+'.substr($phonenumber, 2);
 		try {
 			//database setup
