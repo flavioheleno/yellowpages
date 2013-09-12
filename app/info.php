@@ -10,7 +10,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 	$query = filter_var($query, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 } else
 	$query = '';
-if ($query == '')
+if (empty($query))
 	$response = array(
 		'status' => false,
 		'info' => array()
